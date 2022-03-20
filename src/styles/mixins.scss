@@ -1,0 +1,137 @@
+/* region query */
+@mixin withRegion($specificRegion) {
+  @if $region == $specificRegion {
+    @content;
+  }
+}
+
+@mixin queryRatioOver {
+  html[data-ratio-over='true'] & {
+    @content;
+  }
+}
+
+
+/* fullscreen background */
+@mixin fullscreenBg($url) {
+  background: url($url) center center / 100% auto no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+/* full size */
+@mixin fullsize() {
+  width: 100%;
+  height: 100%;
+}
+
+/* full cover */
+@mixin fullcover() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* align center */
+@mixin alignCenter() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin flexCenter($direction) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+/* clear float */
+@mixin clear() {
+  &::after {
+    content: ' ';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+/* ellipsis */
+@mixin ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* setup fullscreen */
+@mixin fullscreenSetup() {
+  /* force landscape */
+  @media only screen and (orientation: portrait) {
+    transform: rotate(90deg);
+    transform-origin: 50vmin 50vmin;
+  }
+}
+
+@mixin scrollScreenSetup() {
+  /* force landscape with scrollable */
+  @media only screen and (orientation: portrait) {
+    transform: rotate(90deg) translateY(-100%);
+    transform-origin: top left;
+  }
+}
+
+@function assetsUrl($path) {
+  @return url('#{$cdn}/#{$path}');
+}
+
+@mixin scrollBar($width: 0.03rem, $color: red, $bgcolor: red, $direction: vertical) {
+  &::-webkit-scrollbar {
+    @if $direction == vertical {
+      width: $width;
+    } @else {
+      height: $width;
+    }
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1rem $bgcolor;
+  }
+  &::-webkit-scrollbar-thumb:#{$direction} {
+    background-color: $color;
+  }
+}
+
+@mixin hideScrollBar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
+
+@mixin disableDefaultAction() {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: pan-x pan-y;
+  user-select: none;
+  input, textarea, select {
+    user-select: auto;
+  }
+}
+
+@mixin noTouchOrSelect {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@mixin activeScale {
+  transition: transform 0.2s;
+  &:active {
+    transform: scale(0.95);
+  }
+}
