@@ -27,7 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import { initGame } from '@/game';
 
 const battleRef = ref(false);

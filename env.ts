@@ -1,4 +1,4 @@
-const ProductionCDN = '';
+const ProductionCDN = './cdn/assets';
 
 const templateData = {
   title: 'Vite App',

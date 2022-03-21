@@ -1,13 +1,9 @@
 <template>
-  <router-view />
+  <EventHomeVue />
 </template>
 
 <script setup lang="ts">
-import { useGame } from '@/stores/Game';
-
-const Game = useGame();
-
-Game.getProfile();
+import EventHomeVue from './views/EventHome.vue';
 </script>
 
 <style>
